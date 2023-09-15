@@ -1,0 +1,56 @@
+﻿@using MvcStok.Models.Entity
+@model List<TBLURUNLER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered" style="background-color:gray">
+    <thead>
+        <tr>
+            <th>URUN ID</th>
+            <th>URUN AD</th>
+            <th>URUNKATEGORI</th>
+            <th>MARKA </th>
+            <th> FİYAT</th>
+            <th> STOK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody style="background-color:aqua">
+        @foreach (var urk in Model)
+        {
+            <tr>
+                <td>
+                    @urk.URUNID
+                </td>
+                <td>@urk.URUNAD</td>
+                <td>@urk.TBLKATEGORILER.KATEGORIAD</td>
+                <td>@urk.MARKA</td>
+                <td>@urk.FIYAT</td>
+                <td>@urk.STOK</td>
+                <td> <a href="/Urun/SIL/@urk.URUNID" class="btn btn-danger">SİL</a></td>
+
+                <td><a href="/Urun/UrunGetır/@urk.URUNID" class="btn btn-success">GÜNCELLE</a></td>
+
+            </tr>
+
+
+        }
+    </tbody>
+
+
+</table>
+<a href="/Urun/YenıUrun " class="btn btn-primary">YENİ ÜRÜN EKLE</a>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+
+<script>
+    $('#tbl1').dataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+        }
+    });
+    
+</script>
